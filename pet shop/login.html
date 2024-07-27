@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign in | Sign up</title>
+    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="./font-awsome/all.css" />
+    <script src="./font-awsome/all.js"></script>
+    <script src="./js/java.js"></script>
+    <script src="./js/jquery-3.6.0.min.js"></script>
+    <script src="./js/jquery-ui.js"></script>
+  </head>
+  <body>
+    <div class="container" id="container">
+      <div class="form-container sign-up">
+        <form action="#">
+          <h1 class="create">ساخت حساب کاربری</h1>
+          <div class="social-icons">
+            <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="icon"><i class="fab fa-google-plus-g"></i></a>
+          </div>
+          <input
+            type="text"
+            placeholder="نام کاربری خود را وارد نمائید..."
+            class="user"
+          />
+          <i class="err err1"></i>
+          <input
+            type="email"
+            placeholder="ایمیل خود را وارد نمائید..."
+            class="mail"
+          />
+          <i class="err err2"></i>
+          <input
+            type="password"
+            placeholder="رمز عبور خود را وارد نمائید..."
+            class="pass"
+          />
+          <i class="err err3"></i>
+          <button class="login registration">ثبت نام</button>
+        </form>
+      </div>
+
+      <div class="form-container sign-in">
+        <form action="#">
+          <h1 class="create">ورود به حساب کاربری</h1>
+          <div class="social-icons">
+            <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="icon"><i class="fab fa-google-plus-g"></i></a>
+          </div>
+          <input type="email" placeholder="ایمیل خود را وارد نمائید..." id="newmail" class="err er_msg" />
+          <i class="err err2"></i>
+          <input type="password" placeholder="رمز عبور خود را وارد نمائید..." id="newpass" class="err err_msg" />
+          <i class="err err3"></i>
+          <p>فراموشی رمز عبور</p>
+          <button class="create login" id="registration" >ورود</button>
+        </form>
+      </div>
+
+      <div class="toggle-container">
+        <div class="toggle">
+          <div class="toggle-panel toggle-left">
+            <h1>بازگشت مجددتان را خوش آمد می گوییم</h1>
+            <span>حساب کاربری دارید؟</span>
+            <button id="login" class="hidden">ورود</button>
+          </div>
+
+          <div class="toggle-panel toggle-right">
+            <h1>به پت شاپ</h1>
+            <h1>خوش آمدید</h1>
+            <span>حساب کاربری ندارید؟</span>
+            <button id="register" class="hidden">ثبت نام</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let registerBtn = document.getElementById("register");
+      let container = document.getElementById("container");
+      let loginBtn = document.getElementById("login");
+
+      registerBtn.addEventListener("click", () => {
+        container.classList.add("active");
+      });
+      loginBtn.addEventListener("click", () => {
+        container.classList.remove("active");
+      });
+
+      let registration = document.querySelector(".registration");
+
+      registration.addEventListener("click", function () {
+        let user = document.querySelector(".user").value.trim();
+        let pass = document.querySelector(".pass").value.trim();
+        let mail = document.querySelector(".mail").value.trim();
+        let err1Msg = document.querySelector(".err1");
+        let err2Msg = document.querySelector(".err2");
+        let err3Msg = document.querySelector(".err3");
+        let rg_user = /^([a-z0-9._]{8,15})$/;
+        let rg_mail = /^([a-z0-9._@]{6,})$/;
+        let rg_pass = /^([a-z0-9]{6,12})$/;
+
+        if (rg_user.test(user)) {
+          err1Msg.innerHTML = "Valid UserName";
+        } else {
+          err1Msg.innerHTML = "InValid UserName";
+        }
+
+        if (rg_mail.test(mail)) {
+          err2Msg.innerHTML = "Valid E-Mail";
+        } else {
+          err2Msg.innerHTML = "InValid E-Mail";
+        }
+
+        if (rg_pass.test(pass)) {
+          err3Msg.innerHTML = "Valid Password";
+        } else {
+          err3Msg.innerHTML = "InValid Password";
+        }
+      });
+
+      
+      let registrate = document.querySelector("#registration");
+      registrate.addEventListener("click", function () {
+        let new_pass = document.querySelector("#newpass").value.trim();
+        let new_mail = document.querySelector("#newmail").value.trim();
+        let err1 = document.querySelector(".er_msg");
+        let err2 = document.querySelector(".err_msg");
+        let rg_mail_new = /^([a-z0-9._@]{6,})$/;
+        let rg_pass_new = /^([a-z0-9]{6,12})$/;
+
+        if (rg_mail_new.test(new_mail)) {
+          err1.innerHTML = "Valid UserName";
+        }
+        else {
+          err1.innerHTML = "InValid UserName";
+        }
+
+        if (rg_pass_new.test(new_pass)) {
+          err2.innerHTML = "Valid UserName";
+        } 
+        else {
+          err2.innerHTML = "InValid UserName";
+        }
+
+      });
+
+
+    </script>
+  </body>
+</html>
